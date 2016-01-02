@@ -13,24 +13,13 @@ if(isset($_GET['p']) && isset($_SESSION['activeImg'])){
 		$img = imagecreatefrompng('img/error.png');
 	}
 } elseif(isset($_GET['t'])){
-	$generator = new ImageGenerator('img/designer/', 'img/template/');
-	$result = $db->query("SELECT templateId || '.' || filetype AS file, 
-								 CASE WHEN overlayFiletype IS NULL THEN null ELSE templateId || '.' || overlayFiletype END AS overlayFile, 
-								 positions AS pos
+	$generator = new ImageGenerator('img/designer/', '');
+	$template = $db->getTemplates("SELECT Templates.*
 						 FROM Templates
 						 WHERE templateId = ?",
 						 array($_GET['t']),
-						 array(SQLITE3_TEXT));
-	if($db->resultHasRows($result)){
-		$row = $result->fetchArray();
-		$templateId = $_GET['t'];
-		$file = $row['file'];
-		$overlayFile = $row['overlayFile'];
-		$pos = $row['pos'];
-		$img = $generator->generate($pos, $file, $overlayFile);
-	} else{
-		$img = imagecreatefrompng('img/error.png');
-	}
+						 array(SQLITE3_TEXT))[0];
+	$img = $generator->generate($template->getPositions(), $template->getImage(), $template->getOverlayFiletype() === null ? null : $template->getOverlayImage());
 }else{
 	exit();
 }
