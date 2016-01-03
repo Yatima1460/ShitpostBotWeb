@@ -117,7 +117,7 @@ function addRectangle(){
 			return true;
 		});
 		doLiveUpdate();
-	} else if (width > minRectSize && height > minRectSize && getRectCount() < maxRectCount && !checkIntersection(x1, y1, x2, y2)){
+	} else if (width > minRectSize && height > minRectSize && getRectCount() < maxRectCount/* && !checkIntersection(x1, y1, x2, y2)*/){
 		if(shouldAddFillColour()){
 			if(isFillColourValid()){
 				rects.push([penId, [x1, y1, x2, y2], getSelectedFillColour()]);
