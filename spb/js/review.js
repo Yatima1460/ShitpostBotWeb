@@ -1,9 +1,9 @@
 $(document).ready(function(){
 	$('.review').click(function(e){
 		var btn = $(this);
-		var id = $(this).attr('code');
-		var type = $(this).attr('type');
-		var state = $(this).attr('state');
+		var id = btn.attr('code');
+		var type = btn.attr('type');
+		var state = btn.attr('state');
 		$.get('do-review.php?id='+id+'&t='+type+'&s='+state, function(data){
 			if(data == ';success'){
 				var ret = btn.attr('return');
