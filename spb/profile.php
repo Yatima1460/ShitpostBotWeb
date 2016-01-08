@@ -2,7 +2,7 @@
 include('php/autoload.php');
 $userId = isset($_GET['u']) ? $_GET['u'] : 'NONE';
 $userExists = false;
-$users = $db->getUsers('SELECT * FROM Users WHERE userId = ?', array($userId), array(SQLITE3_TEXT));
+$users = $db->getUsers('SELECT * FROM Users WHERE userId = ? OR username = ?', array($userId, $userId), array(SQLITE3_TEXT, SQLITE3_TEXT));
 if(count($users) > 0){
 	$user = $users[0];
 	$userExists = true;
