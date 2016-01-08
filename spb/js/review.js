@@ -21,4 +21,8 @@ $(document).ready(function(){
 	$('.review-skip').click(function(){
 		location.reload();
 	});
+	
+	$('#jump').click(function(){
+		window.location.href = '?id='+$('#id').val();
+	});
 });

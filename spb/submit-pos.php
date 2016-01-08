@@ -25,6 +25,7 @@ try{
 }
 
 $templateId = $_SESSION['activeId'];
+$_SESSION['lastId'] = $_SESSION['activeId']; //for the success message
 $templateFiletype = pathinfo($_SESSION['activeImg'], PATHINFO_EXTENSION);
 $pos = $_SESSION['lastPos'];
 $overlayFiletype = $_SESSION['activeOverlay'] == '' ? 'NONE' : pathinfo($_SESSION['activeOverlay'], PATHINFO_EXTENSION);

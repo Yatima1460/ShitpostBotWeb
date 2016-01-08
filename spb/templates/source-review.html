@@ -12,7 +12,8 @@
     
     <button class='review' id='accept' code='{{sourceId}}' type='s' state='a'>Accept</button>
     <button class='review' id='deny' code='{{sourceId}}' type='s' state='d'>Deny</button>
-    <button class='review-skip' id='skip'>Skip</button>
+    <button class='review-skip' id='skip'>Skip</button><br>
+	<input type='text' id='id'><button id='jump'>Jump to ID</button>
   {% else %}
     <h2>No source images found.</h2>
   {% endif %}

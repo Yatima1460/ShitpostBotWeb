@@ -23,7 +23,8 @@
     <span class="time loading" time="{{ template.timeAdded }}">...</span></p>
     <button class='review' id='accept' code='{{template.templateId}}' type='t' state='a'>Accept</button>
     <button class='review' id='deny' code='{{template.templateId}}' type='t' state='d'>Deny</button>
-    <button class='review-skip' id='skip'>Skip</button>
+    <button class='review-skip' id='skip'>Skip</button><br>
+	<input type='text' id='id'><button id='jump'>Jump to ID</button>
   {% else %}
     <h2>No templates found.</h2>
   {% endif %}

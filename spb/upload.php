@@ -103,6 +103,7 @@ if(isset($_POST["submit"])) {
 			$response = $db->addSourceImage($id, $type);
 			if($response == ';success'){
 				move_uploaded_file($_FILES["upload"]["tmp_name"], $uploadFileDest);
+				$_SESSION['lastId'] = $id; //for the success message
 				header('Location: success.php');
 			} else{
 				header('Location: submit.php?e='.urlencode("Database failed with message: $response"));
