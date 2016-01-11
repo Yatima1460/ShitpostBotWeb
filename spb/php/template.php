@@ -97,9 +97,13 @@ class Template{
 	}
 	
 	public function getOverlayImage(){
-		$id = $this->getTemplateId();
-		$type = $this->getOverlayFiletype();
-		return "img/template/$id-overlay.$type";
+		if(isset($this->getOverlayFiletype)){
+			$id = $this->getTemplateId();
+			$type = $this->getOverlayFiletype();
+			return "img/template/$id-overlay.$type";
+		} else{
+			return null;
+		}
 	}
 	
 	private function fetchRating($db){
