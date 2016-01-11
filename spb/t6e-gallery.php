@@ -5,7 +5,7 @@ require("php/gallery-item.php");
 $by = isset($_GET['by']) ? $_GET['by'] : null;
 $dir = isset($_GET['dir']) ? $_GET['dir'] : null;
 $p = isset($_GET['p']) ? $_GET['p'] : null;
-$_SESSION['lastT6eGalleryPage'] = "src-gallery.php?by=$by&dir=$dir&p=$p";
+$_SESSION['lastT6eGalleryPage'] = "t6e-gallery.php?by=$by&dir=$dir&p=$p";
 
 $orderByReq = !is_null($by) ? $by : 'time-acc';
 switch($orderByReq){
