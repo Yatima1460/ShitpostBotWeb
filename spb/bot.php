@@ -22,8 +22,8 @@ $tempDbLocation = str_replace('.', '-temp.', $db->getLocation());
 copy($db->getLocation(), $tempDbLocation);
 $tempDb = new Database($tempDbLocation);
 
-$templates = $tempDb->getTemplates(isset($_GET['templateQuery']) ? urldecode($_GET['templateQuery']) : "SELECT * FROM Templates");
-$sources = $tempDb->getSourceImages(isset($_GET['sourceQuery']) ? urldecode($_GET['sourceQuery']) : "SELECT * FROM SourceImages");
+$templates = $tempDb->getTemplates(isset($_GET['templateQuery']) ? urldecode($_GET['templateQuery']) : "SELECT * FROM Templates WHERE reviewState = 'a'");
+$sources = $tempDb->getSourceImages(isset($_GET['sourceQuery']) ? urldecode($_GET['sourceQuery']) : "SELECT * FROM SourceImages WHERE reviewState = 'a'");
 
 $sourcePaths = array();
 for($i = 0; $i < count($sources); $i++){
