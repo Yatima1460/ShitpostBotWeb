@@ -97,7 +97,7 @@ class Template{
 	}
 	
 	public function getOverlayImage(){
-		if(isset($this->getOverlayFiletype)){
+		if($this->overlayFiletype !== SQLITE3_NULL){
 			$id = $this->getTemplateId();
 			$type = $this->getOverlayFiletype();
 			return "img/template/$id-overlay.$type";
