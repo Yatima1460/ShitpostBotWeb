@@ -100,11 +100,8 @@ class ImageGenerator{
 		$nw = $iw * $ratio;
 		$nh = $ih * $ratio;
 		
-		if($w > $h){
-			$x += ($w - $nw) / 2;
-		} else{
-			$y += ($h - $nh) / 2;
-		}
+		$y += ($h - $nh) / 2;
+		$x += ($w - $nw) / 2;
 		
 		return array(round($x), round($y), round($x + $nw), round($y + $nh));
 	}
