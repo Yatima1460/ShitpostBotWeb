@@ -1,5 +1,6 @@
 <?php
 require('php/autoload.php');
+set_time_limit(1000);
 
 if(!$isLoggedIn){
 	die('Not logged in');
@@ -43,4 +44,5 @@ $tempDb->close();
 @unlink($tempDbLocation);
 echo "Done.<br>";
 echo "Took ".(time() - $startingTime).' seconds.';
+set_time_limit(30);
 ?>
