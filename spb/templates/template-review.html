@@ -19,7 +19,7 @@
       {% endif %}
       <div class="col-xs-4"><img src='generate.php?t={{template.templateId}}&w=380'/></div>
     </div>
-    <p><div class='submitter'>{{template.templateId}} by <a href='profile.php?u={{ template.submitterId }}'>{{ template.submitterName }}</a></div>
+    <p><div class='submitter'>{{template.templateId}} by <a href='profile.php?u={{ template.userId }}'>{{ template.submitterName }}</a></div>
     <span class="time loading" time="{{ template.timeAdded }}">...</span></p>
     <button class='review' id='accept' code='{{template.templateId}}' type='t' state='a'>Accept</button>
     <button class='review' id='deny' code='{{template.templateId}}' type='t' state='d'>Deny</button>
