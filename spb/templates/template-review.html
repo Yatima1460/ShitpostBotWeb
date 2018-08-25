@@ -19,11 +19,12 @@
       {% endif %}
       <div class="col-xs-4"><img src='generate.php?t={{template.templateId}}&w=380'/></div>
     </div>
-    <p><div class='submitter'>{{template.templateId}} by <a href='profile.php?u={{ template.submitterId }}'>{{ template.submitterName }}</a></div>
+    <p><div class='submitter'>{{template.templateId}} by <a href='profile.php?u={{ template.userId }}'>{{ template.submitterName }}</a></div>
     <span class="time loading" time="{{ template.timeAdded }}">...</span></p>
     <button class='review' id='accept' code='{{template.templateId}}' type='t' state='a'>Accept</button>
     <button class='review' id='deny' code='{{template.templateId}}' type='t' state='d'>Deny</button>
-    <button class='review-skip' id='skip'>Skip</button>
+    <button class='review-skip' id='skip'>Skip</button><br>
+	<input type='text' id='id'><button id='jump'>Jump to ID</button>
   {% else %}
     <h2>No templates found.</h2>
   {% endif %}

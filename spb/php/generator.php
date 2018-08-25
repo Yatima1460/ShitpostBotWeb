@@ -30,12 +30,16 @@ class ImageGenerator{
 		return imagecreatefromjpeg($file);
 	}
 	
-	function generate($pos, $templateImg, $overlayImg=null) {
+	function generate($pos, $templateImg, $overlayImg=null, $sources = null) {
 		$data = json_decode($pos);
 		$imgcount = count($data);
-		$images = glob($this->srcPath."*.{jpg,png}", GLOB_BRACE);
+		$images = is_null($sources) ? glob($this->srcPath."*.{jpg,png}", GLOB_BRACE) : $sources;
 		shuffle($images);
 		$imgs = array_slice($images, 0, $imgcount);
+		//if this template calls for more images then there are available, randomly repeat sources until there's enough
+		while(count($imgs) < $imgcount){
+			array_push($imgs, $images[mt_rand(0, count($images))]);
+		}
 	
 		$fullPath = $this->t6ePath.$templateImg;
 		$img = self::openimage($fullPath);
@@ -96,11 +100,8 @@ class ImageGenerator{
 		$nw = $iw * $ratio;
 		$nh = $ih * $ratio;
 		
-		if($w > $h){
-			$x += ($w - $nw) / 2;
-		} else{
-			$y += ($h - $nh) / 2;
-		}
+		$y += ($h - $nh) / 2;
+		$x += ($w - $nw) / 2;
 		
 		return array(round($x), round($y), round($x + $nw), round($y + $nh));
 	}

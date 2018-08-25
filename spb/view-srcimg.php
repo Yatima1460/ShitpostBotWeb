@@ -12,6 +12,7 @@ if($validItem){
 	}
 }
 
-echo $twig->render('view-srcimg.html', array('title' => 'Source Image', 'isValidItem' => $validItem, 's' => $sourceImage));
+echo $twig->render('view-srcimg.html', array('title' => 'Source Image', 'isValidItem' => $validItem, 's' => $sourceImage, 
+	'lastPage' => isset($_SESSION['lastSrcGalleryPage']) ? $_SESSION['lastSrcGalleryPage'] : 'src-gallery.php'));
 $db->close();
 ?>

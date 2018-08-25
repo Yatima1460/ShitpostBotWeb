@@ -97,9 +97,13 @@ class Template{
 	}
 	
 	public function getOverlayImage(){
-		$id = $this->getTemplateId();
-		$type = $this->getOverlayFiletype();
-		return "img/template/$id-overlay.$type";
+		if($this->overlayFiletype !== SQLITE3_NULL){
+			$id = $this->getTemplateId();
+			$type = $this->getOverlayFiletype();
+			return "img/template/$id-overlay.$type";
+		} else{
+			return null;
+		}
 	}
 	
 	private function fetchRating($db){

@@ -2,8 +2,12 @@
 $ITEMS_PER_PAGE = 30;
 include('php/autoload.php');
 require("php/gallery-item.php");
+$by = isset($_GET['by']) ? $_GET['by'] : null;
+$dir = isset($_GET['dir']) ? $_GET['dir'] : null;
+$p = isset($_GET['p']) ? $_GET['p'] : null;
+$_SESSION['lastT6eGalleryPage'] = "t6e-gallery.php?by=$by&dir=$dir&p=$p";
 
-$orderByReq = isset($_GET['by']) ? $_GET['by'] : 'time-acc';
+$orderByReq = !is_null($by) ? $by : 'time-acc';
 switch($orderByReq){
 	case 'submitter':
 		$orderBy = 'ORDER BY u.username';
@@ -21,10 +25,10 @@ switch($orderByReq){
 		$orderBy = "ORDER BY SUM(CASE WHEN r.isPositive = 'y' THEN 1 ELSE 0 END) - SUM(CASE WHEN r.isPositive = 'n' THEN 1 ELSE 0 END)";
 }
 
-$dir = isset($_GET['dir']) ? ($_GET['dir'] == 'asc' ? 'asc' : 'desc') : 'desc';
+$dir = !is_null($dir) ? ($dir == 'asc' ? 'asc' : 'desc') : 'desc';
 
 $totalItemCount = $db->scalar("SELECT count(templateId) FROM Templates WHERE reviewState = 'a'", array(), array());
-$page = max(isset($_GET['p']) ? $_GET['p'] : 1, 1);
+$page = max(!is_null($p) ? $p : 1, 1);
 
 $startIndex = ($page-1) * $ITEMS_PER_PAGE;
 $query = "SELECT t.* FROM Users as u, Templates as t LEFT OUTER JOIN TemplateRatings as r ON r.templateId = t.templateId WHERE t.userId = u.userId AND reviewState = 'a' GROUP BY t.templateId $orderBy $dir LIMIT ? OFFSET ?";

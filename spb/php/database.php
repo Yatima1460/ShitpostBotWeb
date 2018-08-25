@@ -17,16 +17,25 @@ if(!function_exists('hash_equals')) {
 
 class Database{
 	
-	private $databaseLocation = 'db/database.db';
+	private $defaultDatabaseLocation = 'db/database.db';
+	private $databaseLocation;
 
 	//the sqlite3 instance
 	private $db;
 	
-	function __construct(){
+	function __construct($loc = null){
+		$this->databaseLocation = is_null($loc) ? $this->defaultDatabaseLocation : $loc;
 		$this->db = new SQLite3($this->databaseLocation);
 		$this->db->busyTimeout(5000); //if this value is not set, the timeout is 0 seconds by default. this often causes locking errors
 	}
-
+	
+	/**
+	 * @return string file location of the database
+	 */
+	public function getLocation(){
+		return $this->databaseLocation;
+	}
+	
 	/**
 	 * makes and executes a prepared statement, using ?s as the parameters.
 	 * @param $query string value of query

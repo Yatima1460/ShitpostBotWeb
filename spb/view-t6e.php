@@ -12,6 +12,7 @@ if($validItem){
 	}
 }
 
-echo $twig->render('view-t6e.html', array('title' => 'Template', 'isValidItem' => $validItem, 't' => $template));
+echo $twig->render('view-t6e.html', array('title' => 'Template', 'isValidItem' => $validItem, 't' => $template, 
+	'lastPage' => isset($_SESSION['lastT6eGalleryPage']) ? $_SESSION['lastT6eGalleryPage'] : 't6e-gallery.php'));
 $db->close();
 ?>
